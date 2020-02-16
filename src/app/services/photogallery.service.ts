@@ -16,6 +16,10 @@ export class PhotogalleryService {
     return this.http.get<Photo>(this.URI+'photos');
   }
 
+  getPhotosInAlbums(id: string) {
+    return this.http.get<Photo>(`${this.URI}photosInAlbums/${id}`);
+  }
+
   createPhoto(title:string, description:string, image:File){
     const fd = new FormData();
     fd.append('title',title)
@@ -24,12 +28,40 @@ export class PhotogalleryService {
     return this.http.post(this.URI+'photos', fd);
   }
 
-  deleteOnePhoto(id:string){
+  deletePhoto(id: string) {
+    return this.http.delete(`${this.URI}photos/delete/${id}`);
+  }
+  
+  updatePhoto(id: string, title: string, description: string) {
+    return this.http.put(`${this.URI}/${id}`, {title, description});
+  }
 
-    let httpParams = new HttpParams();
-    httpParams.set('id', id);
+  addPhotoAlbum(id:string, id_album:string) {
+    const fd = new FormData();
+    fd.append('id',id)
+    fd.append('id_album',id_album)
+    return this.http.put(this.URI+'photos', fd);
+  }
 
-    let options = { params: httpParams };
-    return this.http.delete(this.URI+'photos/delete/'+ options);
+  removePhotoAlbum(id:string, id_album:string) {
+    const fd = new FormData();
+    fd.append('id',id)
+    fd.append('id_album',id_album)
+    return this.http.put(this.URI+'photos/remove', fd);
+  }
+  
+  getAllAlbums(){
+    return this.http.get<Album>(this.URI+'albums');
+  }
+
+  createAlbum(titleAlbum:string, descriptionAlbum:string){
+    const fdd = new FormData();
+    fdd.append('title',titleAlbum)
+    fdd.append('description',descriptionAlbum)
+    return this.http.post(this.URI+'albums', fdd);
+  }
+
+  deleteAlbum(id: string) {
+    return this.http.delete(`${this.URI}albums/delete/${id}`);
   }
 }

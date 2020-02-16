@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PhotogalleryService } from 'src/app/services/photogallery.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  albums: any[] = [];
+
+  constructor( private photogallery: PhotogalleryService ) { 
+    this.photogallery.getAllAlbums()
+    .subscribe( (data: any) =>{
+      this.albums = data.album
+    })
+  }
 
   ngOnInit(): void {
   }

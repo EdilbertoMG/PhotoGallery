@@ -36,4 +36,18 @@ export class AddComponent implements OnInit {
       }
     )
   }
+
+  uploadAlbum(titleAlbum:HTMLInputElement,descriptionAlbum:HTMLTextAreaElement):boolean{
+    this.servicePhoto.createAlbum(titleAlbum.value, descriptionAlbum.value)
+    .subscribe(
+      res => {
+        console.log(res)
+        /* this.router.navigate(['photos']) */
+      }, 
+      err => {
+        console.log(err)
+      }
+    )
+    return false
+  }
 }
