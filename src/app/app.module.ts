@@ -1,12 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+// module
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AlbumsComponent } from './components/albums/albums.component';
 import { PhotosComponent } from './components/photos/photos.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { LoadingComponent } from './components/shared/loading/loading.component';
+import { AddComponent } from './components/shared/add/add.component';
+import { HttpClientModule } from '@angular/common/http';
+
+// pipes
 import { NophotoPipe } from './pipes/nophoto.pipe';
-import { DominsurancePipe } from './pipes/dominsurance.pipe';
+
+// routes
+import { routes } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -14,11 +24,14 @@ import { DominsurancePipe } from './pipes/dominsurance.pipe';
     AlbumsComponent,
     PhotosComponent,
     NophotoPipe,
-    DominsurancePipe
+    NavbarComponent,
+    LoadingComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    RouterModule.forRoot( routes, { useHash: false } )
   ],
   providers: [],
   bootstrap: [AppComponent]

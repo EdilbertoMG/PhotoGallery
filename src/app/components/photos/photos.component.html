@@ -1,1 +1,21 @@
-<p>photos works!</p>
+<div class="row mt-4">
+  <div
+    *ngFor="let photo of photos"
+    class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-2"
+  >
+    <div class="card">
+      <img [src]="photo.imageURL" class="card-img-top" height="200px" />
+      <div class="card-body">
+        <h5 class="card-title">{{ photo.title }}</h5>
+        <p class="card-text">{{ photo.description }}</p>
+        <button
+          (click)="deletePhoto(photo._id)"
+          type="button"
+          class="btn btn-danger"
+        >
+          Delete photo
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
