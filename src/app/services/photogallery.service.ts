@@ -24,6 +24,10 @@ export class PhotogalleryService {
       return this.http.get < Photo > (`${this.URI}photos`);
   }
 
+  getOnePhotos(id: string) {
+    return this.http.get < Photo[] > (`${this.URI}photos/${id}`);
+}
+
   getPhotosInAlbums(id: string) {
       return this.http.get < Photo[] > (`${this.URI}photosInAlbums/${id}`);
   }

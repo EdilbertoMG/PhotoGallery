@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotogalleryService } from 'src/app/services/photogallery.service';
 import {Router} from '@angular/router'
+import { Photo } from 'src/app/interfaces/Photo';
 
 @Component({
   selector: 'app-photos',
@@ -9,7 +10,7 @@ import {Router} from '@angular/router'
 })
 export class PhotosComponent implements OnInit {
 
-  photos: any[] = [];
+  photos: Photo[] = [];
   loading: boolean;
 
   constructor( private photogallery: PhotogalleryService, private router: Router ) {}
@@ -23,7 +24,7 @@ export class PhotosComponent implements OnInit {
     this.loading = false;
   }
 
-   deletePhoto(id: string) {
+  /*  deletePhoto(id: string) {
     this.photogallery.deletePhoto(id)
       .subscribe(
       res => {
@@ -34,9 +35,9 @@ export class PhotosComponent implements OnInit {
         console.log(err)
       }
       )
-  }
+  } */
 
-  addPhotoAlbum(id:HTMLInputElement,id_album:HTMLInputElement){
+  /* addPhotoAlbum(id:HTMLInputElement,id_album:HTMLInputElement){
     this.photogallery.addPhotoAlbum(id.value, id_album.value)
     .subscribe(
       res => {
@@ -47,6 +48,6 @@ export class PhotosComponent implements OnInit {
         console.log(err)
       }
     )
-  }
+  } */
 
 }

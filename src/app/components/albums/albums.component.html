@@ -5,11 +5,10 @@
   <h1>Loading...</h1>
 </div>
 <ng-template #main_content>
-  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Thumbnail Gallery</h1>
   <hr class="mt-2 mb-5">
   <div class="row text-center text-lg-left">
       <div *ngFor="let photo of photos" class="col-lg-3 col-md-4 col-6 animated fast fadeIn">
-          <a [routerLink]="[photo._id]">
+          <a [routerLink]="['/photos/' + photo._id]">
               <img class="img-fluid img-thumbnail" [src]="photo.imageURL" [alt]="photo.title" width="400px" height="300px">
           </a>
           <button (click)="deletePhoto(photo._id,id_album)" class="btn btn-danger btn-block mt-1 mb-1" data-toggle="tooltip" data-placement="top" title="Remove photo from album">

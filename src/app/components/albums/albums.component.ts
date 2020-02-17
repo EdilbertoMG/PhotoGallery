@@ -37,7 +37,7 @@ export class AlbumsComponent implements OnInit {
       .subscribe(
       res => {
         console.log(res);
-        location.reload();
+        this.router.navigate(['photos'])
       },
       err => {
         console.log(err)

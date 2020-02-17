@@ -1,1 +1,23 @@
-<p>one-photo works!</p>
+<div class="row">
+<div class="col-12 col-sm-12 col-md-6">
+    <div class="card mt-2">
+        <div class="card-body">
+          <h5 class="card-title">{{title}}</h5>
+          <p class="card-text">{{description}}</p>
+          <form (submit)="addPhotoToAlbum(id_photo,id_album)" class="mt-2">
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">select an album</label>
+                <select class="form-control" #id_album>
+                    <option *ngFor="let album of albums" value="{{album._id}}">{{album.title}}</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Save photo to album</button>
+          </form>
+          <button (click)="deletePhoto(id_photo)" type="button" class="btn btn-danger btn-lg btn-block mt-1">Delete photo</button>
+      </div>
+        </div>
+</div>
+<div class="col-12 col-sm-12 col-md-6">
+    <img [src]="img" [alt]="title" class="img-thumbnail">
+</div>
+</div>
