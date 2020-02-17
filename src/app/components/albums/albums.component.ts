@@ -12,7 +12,7 @@ export class AlbumsComponent implements OnInit {
 
   id_album: string;
   photos: Photo[];
-  
+
   constructor(
     private photogallery: PhotogalleryService, 
     private router: Router,
@@ -24,11 +24,10 @@ export class AlbumsComponent implements OnInit {
       this.id_album = params['id'];
       this.photogallery.getPhotosInAlbums(this.id_album)
         .subscribe(
-          res => {
-            this.photos = res;
-            console.log(this.photos)
-          },
-          err => console.log(err)
+          (data: any) => {
+            console.log(data.photos);
+            this.photos = data.photos;
+          }
         )
     });
   }
@@ -39,6 +38,19 @@ export class AlbumsComponent implements OnInit {
       res => {
         console.log(res);
         location.reload();
+      },
+      err => {
+        console.log(err)
+      }
+      )
+  }
+
+  deleteAlbum(id_album:string){
+    this.photogallery.deleteAlbum(id_album)
+    .subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(['photos'])
       },
       err => {
         console.log(err)

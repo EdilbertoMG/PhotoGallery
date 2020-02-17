@@ -28,6 +28,10 @@ export class PhotogalleryService {
     return this.http.post(`${this.URI}photos`, fd);
   }
 
+  getByName(finished:string){
+    return this.http.get<Photo>(`${this.URI}photos/search/${finished}`);
+  }
+
   deletePhoto(id: string) {
     return this.http.delete(`${this.URI}photos/delete/${id}`);
   }

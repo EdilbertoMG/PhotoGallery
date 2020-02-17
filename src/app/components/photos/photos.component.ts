@@ -10,14 +10,17 @@ import {Router} from '@angular/router'
 export class PhotosComponent implements OnInit {
 
   photos: any[] = [];
+  loading: boolean;
 
   constructor( private photogallery: PhotogalleryService, private router: Router ) {}
   
    ngOnInit() {
+    this.loading = true;
     this.photogallery.getAllPhotos()
     .subscribe( (data: any) =>{
       this.photos = data.photos
     })
+    this.loading = false;
   }
 
    deletePhoto(id: string) {

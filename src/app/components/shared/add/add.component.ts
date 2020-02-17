@@ -8,9 +8,9 @@ interface HtmlInputEvent extends Event {
 
 @Component({
   selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+  templateUrl: './add.component.html'
 })
+
 export class AddComponent implements OnInit {
   file: File;
   constructor( private servicePhoto: PhotogalleryService , private router: Router) { }

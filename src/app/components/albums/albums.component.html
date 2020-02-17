@@ -1,21 +1,29 @@
+<button 
+  (click)="deleteAlbum(id_album)"
+  class="btn btn-danger m-1" data-toggle="tooltip" data-placement="top" title="Delete album">
+  <i class="fas fa-trash-alt"></i>
+</button>
 <div class="row" *ngIf="!photos; else main_content">
   <h1>Loading...</h1>
 </div>
 <ng-template #main_content>
+
   <div class="row mt-4">
     <div
+      *ngFor="let photo of photos"
       class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-2"
     >
       <div class="card">
-        <img  class="card-img-top" height="200px" />
+        <img [src]="photo.imageURL" class="card-img-top" height="200px" />
         <div class="card-body">
-          <h5 class="card-title"></h5>
-          <p class="card-text"></p>
+          <h5 class="card-title">{{ photo.title }}</h5>
+          <p class="card-text">{{ photo.description }}</p>
           <button
-           
-            class="btn btn-danger"
+          (click)="deletePhoto(photo._id,id_album)"
+          class="btn btn-danger"
+          data-toggle="tooltip" data-placement="top" title="Remove photo from album"
           >
-            Remove photo from album
+          <i class="fas fa-trash-alt"></i>
           </button>
         </div>
       </div>
