@@ -17,6 +17,7 @@ import { NophotoPipe } from './pipes/nophoto.pipe';
 // routes
 import { routes } from './app-routing.module';
 import { SearchComponent } from './components/search/search.component';
+import { OnePhotoComponent } from './components/one-photo/one-photo.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { SearchComponent } from './components/search/search.component';
     NavbarComponent,
     LoadingComponent,
     AddComponent,
-    SearchComponent
+    SearchComponent,
+    OnePhotoComponent
   ],
   imports: [
     BrowserModule,

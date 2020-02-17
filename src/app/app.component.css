@@ -1,0 +1,20 @@
+.a {
+    fill: none;
+  }
+
+  .b {
+    clip-path: url(#a);
+  }
+
+  .c,
+  .d {
+    fill: #f9f9fc;
+  }
+
+  .d {
+    opacity: 0.5;
+    isolation: isolate;
+  }
+  .masthead{
+      background-image: url("../assets/img/banner.png");
+  }

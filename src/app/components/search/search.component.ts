@@ -20,14 +20,23 @@ export class SearchComponent {
     this.photogallery.getByName( finished )
     .subscribe( (data: any) => {
       console.log(data.photos);
-      
       this.photos = data.photos;
-
       this.loading = false;
     },
     (err) =>{
       this.loading = false;
     }
-    );
-}
+    )}
+
+    deletePhoto(id: string) {
+      this.photogallery.deletePhoto(id)
+        .subscribe(
+        res => {
+          console.log(res);
+          location.reload();
+        },
+        err => {
+          console.log(err)
+        }
+    )}
 }

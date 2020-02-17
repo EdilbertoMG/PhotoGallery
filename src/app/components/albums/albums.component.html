@@ -1,32 +1,20 @@
-<button 
-  (click)="deleteAlbum(id_album)"
-  class="btn btn-danger m-1" data-toggle="tooltip" data-placement="top" title="Delete album">
+<button (click)="deleteAlbum(id_album)" class="btn btn-danger m-1" data-toggle="tooltip" data-placement="top" title="Delete album">
   <i class="fas fa-trash-alt"></i>
 </button>
 <div class="row" *ngIf="!photos; else main_content">
   <h1>Loading...</h1>
 </div>
 <ng-template #main_content>
-
-  <div class="row mt-4">
-    <div
-      *ngFor="let photo of photos"
-      class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-2"
-    >
-      <div class="card">
-        <img [src]="photo.imageURL" class="card-img-top" height="200px" />
-        <div class="card-body">
-          <h5 class="card-title">{{ photo.title }}</h5>
-          <p class="card-text">{{ photo.description }}</p>
-          <button
-          (click)="deletePhoto(photo._id,id_album)"
-          class="btn btn-danger"
-          data-toggle="tooltip" data-placement="top" title="Remove photo from album"
-          >
-          <i class="fas fa-trash-alt"></i>
+  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Thumbnail Gallery</h1>
+  <hr class="mt-2 mb-5">
+  <div class="row text-center text-lg-left">
+      <div *ngFor="let photo of photos" class="col-lg-3 col-md-4 col-6 animated fast fadeIn">
+          <a [routerLink]="[photo._id]">
+              <img class="img-fluid img-thumbnail" [src]="photo.imageURL" [alt]="photo.title" width="400px" height="300px">
+          </a>
+          <button (click)="deletePhoto(photo._id,id_album)" class="btn btn-danger btn-block mt-1 mb-1" data-toggle="tooltip" data-placement="top" title="Remove photo from album">
+              <i class="fas fa-trash-alt"></i> Remove photo from album
           </button>
-        </div>
       </div>
-    </div>
   </div>
 </ng-template>
