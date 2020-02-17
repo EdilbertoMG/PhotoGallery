@@ -11,7 +11,7 @@ import { Photo } from '../../interfaces/Photo';
 export class AlbumsComponent implements OnInit {
 
   id_album: string;
-  photos: Photo;
+  photos: Photo[];
   
   constructor(
     private photogallery: PhotogalleryService, 
@@ -26,9 +26,23 @@ export class AlbumsComponent implements OnInit {
         .subscribe(
           res => {
             this.photos = res;
+            console.log(this.photos)
           },
           err => console.log(err)
         )
     });
+  }
+
+  deletePhoto(id:string, id_album:string) {
+    this.photogallery.removePhotoAlbum(id,id_album)
+      .subscribe(
+      res => {
+        console.log(res);
+        location.reload();
+      },
+      err => {
+        console.log(err)
+      }
+      )
   }
 }

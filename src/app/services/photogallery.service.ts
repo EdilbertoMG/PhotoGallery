@@ -13,11 +13,11 @@ export class PhotogalleryService {
   URI = 'https://apiphotogallery.herokuapp.com/api/';
 
   getAllPhotos(){
-    return this.http.get<Photo>(this.URI+'photos');
+    return this.http.get<Photo>(`${this.URI}photos`);
   }
 
   getPhotosInAlbums(id: string) {
-    return this.http.get<Photo>(`${this.URI}photosInAlbums/${id}`);
+    return this.http.get<Photo[]>(`${this.URI}photosInAlbums/${id}`);
   }
 
   createPhoto(title:string, description:string, image:File){
@@ -25,7 +25,7 @@ export class PhotogalleryService {
     fd.append('title',title)
     fd.append('description',description)
     fd.append('image',image)
-    return this.http.post(this.URI+'photos', fd);
+    return this.http.post(`${this.URI}photos`, fd);
   }
 
   deletePhoto(id: string) {
@@ -40,25 +40,25 @@ export class PhotogalleryService {
     const fd = new FormData();
     fd.append('id',id)
     fd.append('id_album',id_album)
-    return this.http.put(this.URI+'photos', fd);
+    return this.http.put(`${this.URI}photos`, fd);
   }
 
   removePhotoAlbum(id:string, id_album:string) {
     const fd = new FormData();
     fd.append('id',id)
     fd.append('id_album',id_album)
-    return this.http.put(this.URI+'photos/remove', fd);
+    return this.http.put(`${this.URI}photos/remove`, fd);
   }
   
   getAllAlbums(){
-    return this.http.get<Album>(this.URI+'albums');
+    return this.http.get<Album>(`${this.URI}albums`);
   }
 
   createAlbum(titleAlbum:string, descriptionAlbum:string){
     const fdd = new FormData();
     fdd.append('title',titleAlbum)
     fdd.append('description',descriptionAlbum)
-    return this.http.post(this.URI+'albums', fdd);
+    return this.http.post(`${this.URI}albums`, fdd);
   }
 
   deleteAlbum(id: string) {

@@ -13,7 +13,7 @@
           <a class="nav-link" [routerLink]="[ 'photos' ]">All Photos <span class="sr-only">(current)</span></a>
         </li>
         <li *ngFor="let album of albums" class="nav-item" routerLinkActive="active">
-          <a class="nav-link"[routerLink]="[ 'albums']">{{ album.title }}</a>
+          <a class="nav-link"[routerLink]="[ 'albums/' + album._id]">{{ album.title }}</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
