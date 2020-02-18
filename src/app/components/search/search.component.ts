@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
-import { PhotogalleryService } from 'src/app/services/photogallery.service';
-import { Photo } from 'src/app/interfaces/Photo';
+import {
+  Component
+} from '@angular/core';
+import {
+  PhotogalleryService
+} from 'src/app/services/photogallery.service';
+import {
+  Photo
+} from 'src/app/interfaces/Photo';
 
 @Component({
   selector: 'app-search',
@@ -8,35 +14,43 @@ import { Photo } from 'src/app/interfaces/Photo';
 })
 export class SearchComponent {
 
-  photos: Photo[] = [];
+  photos: Photo[];
   loading: boolean;
+  nodata: boolean;
 
-  constructor(private photogallery: PhotogalleryService) { }
+  constructor(private photogallery: PhotogalleryService) {}
 
-  buscar( finished: string ){
-    
-    this.loading = true;
+  buscar(finished: string) {
+      this.loading = true;
+      this.photogallery.getByName(finished)
+          .subscribe((data: any) => {
+                  console.log(data.photos);
+                  this.photos = data.photos;
+                  if (this.photos.length == 0) {
+                      this.nodata = true;
+                  } else {
+                      this.nodata = false;
+                  }
+                  this.loading = false;
+              },
+              (error) => {
+                  console.error(error);
+                  this.nodata = true;
+                  this.loading = false;
+              }
+          )
+  }
 
-    this.photogallery.getByName( finished )
-    .subscribe( (data: any) => {
-      console.log(data.photos);
-      this.photos = data.photos;
-      this.loading = false;
-    },
-    (err) =>{
-      this.loading = false;
-    }
-    )}
-
-    deletePhoto(id: string) {
+  deletePhoto(id: string) {
       this.photogallery.deletePhoto(id)
-        .subscribe(
-        res => {
-          console.log(res);
-          location.reload();
-        },
-        err => {
-          console.log(err)
-        }
-    )}
+          .subscribe(
+              res => {
+                  console.log(res);
+                  location.reload();
+              },
+              err => {
+                  console.log(err)
+              }
+          )
+  }
 }

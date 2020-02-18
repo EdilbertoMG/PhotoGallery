@@ -25,8 +25,8 @@ export class PhotogalleryService {
   }
 
   getOnePhotos(id: string) {
-    return this.http.get < Photo[] > (`${this.URI}photos/${id}`);
-}
+      return this.http.get < Photo[] > (`${this.URI}photos/${id}`);
+  }
 
   getPhotosInAlbums(id: string) {
       return this.http.get < Photo[] > (`${this.URI}photosInAlbums/${id}`);
@@ -41,13 +41,13 @@ export class PhotogalleryService {
   }
 
   createPhotoInAlbum(title: string, description: string, image: File, id_album: string) {
-    const fd = new FormData();
-    fd.append('title', title)
-    fd.append('description', description)
-    fd.append('image', image)
-    fd.append('id_album', id_album)
-    return this.http.post(`${this.URI}photosInAlbum`, fd);
-}
+      const fd = new FormData();
+      fd.append('title', title)
+      fd.append('description', description)
+      fd.append('image', image)
+      fd.append('id_album', id_album)
+      return this.http.post(`${this.URI}photosInAlbum`, fd);
+  }
 
   getByName(finished: string) {
       return this.http.get < Photo > (`${this.URI}photos/search/${finished}`);
