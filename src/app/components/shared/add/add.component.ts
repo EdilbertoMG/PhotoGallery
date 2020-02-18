@@ -34,7 +34,6 @@ export class AddComponent implements OnInit {
       this.servicePhoto.createPhoto(title.value, description.value, this.file)
           .subscribe(
               res => {
-                  console.log(res)
                   location.reload();
               },
               err => {
@@ -47,7 +46,6 @@ export class AddComponent implements OnInit {
       this.servicePhoto.createAlbum(titleAlbum.value, descriptionAlbum.value)
           .subscribe(
               res => {
-                  console.log(res)
                   location.reload();
               },
               err => {

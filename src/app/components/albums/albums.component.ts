@@ -59,7 +59,6 @@ export class AlbumsComponent implements OnInit {
       this.photogallery.removePhotoAlbum(id, id_album)
           .subscribe(
               res => {
-                  console.log(res);
                   location.reload();
               },
               err => {
@@ -72,7 +71,6 @@ export class AlbumsComponent implements OnInit {
       this.photogallery.deleteAlbum(id_album)
           .subscribe(
               res => {
-                  console.log(res)
                   location.reload();
               },
               err => {
@@ -93,7 +91,6 @@ export class AlbumsComponent implements OnInit {
       this.photogallery.createPhotoInAlbum(title.value, description.value, this.file, this.id_album)
           .subscribe(
               res => {
-                  console.log(res)
                   location.reload();
               },
               err => {
@@ -106,7 +103,6 @@ export class AlbumsComponent implements OnInit {
       this.photogallery.createAlbum(titleAlbum.value, descriptionAlbum.value)
           .subscribe(
               res => {
-                  console.log(res)
                   location.reload();
               },
               err => {

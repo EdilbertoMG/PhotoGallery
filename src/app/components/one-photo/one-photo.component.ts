@@ -78,7 +78,6 @@ export class OnePhotoComponent implements OnInit {
       this.photogallery.addPhotoAlbum(this.id_photo, id_album.value)
           .subscribe(
               res => {
-                  console.log(res);
                   this.router.navigate(['/albums/' + id_album.value])
               },
               err => {
@@ -92,7 +91,6 @@ export class OnePhotoComponent implements OnInit {
       this.photogallery.deletePhoto(id)
           .subscribe(
               res => {
-                  console.log(res);
                   this.router.navigate(['photos/'])
               },
               err => {

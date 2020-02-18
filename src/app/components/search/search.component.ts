@@ -45,7 +45,6 @@ export class SearchComponent {
       this.photogallery.deletePhoto(id)
           .subscribe(
               res => {
-                  console.log(res);
                   location.reload();
               },
               err => {
