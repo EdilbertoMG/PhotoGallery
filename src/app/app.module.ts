@@ -34,7 +34,7 @@ import { OnePhotoComponent } from './components/one-photo/one-photo.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot( routes, { useHash: false } )
+    RouterModule.forRoot( routes, { useHash: true } )
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -29,7 +29,7 @@ export class AddComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res)
-        this.router.navigate(['photos'])
+        location.reload();
       }, 
       err => {
         console.log(err)
@@ -42,7 +42,7 @@ export class AddComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res)
-        this.router.navigate(['photos'])
+        location.reload();
       }, 
       err => {
         console.log(err)

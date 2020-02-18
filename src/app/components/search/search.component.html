@@ -7,7 +7,7 @@
   </div>
 </div>
 <div class="row text-center text-lg-left">
-  <div *ngFor="let photo of photos" class="col-lg-3 col-md-4 col-6 animated fast fadeIn">
+  <div *ngFor="let photo of photos" class="col-lg-3 col-md-4 col-6 animated fast fadeIn mt-2">
       <a [routerLink]="[photo._id]" class="d-block mb-4 h-100">
           <img class="img-fluid img-thumbnail" [src]="photo.imageURL" [alt]="photo.title" width="400px" height="300px">
       </a>

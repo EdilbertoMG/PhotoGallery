@@ -1,6 +1,11 @@
+<div *ngIf="veryfidata; else main_content" class="alert alert-warning" role="alert">
+    no photos upload one
+</div>
+<ng-template #main_content>
 <app-loading *ngIf="loading"></app-loading>
+<app-add></app-add>
 <div class="col-12 mt-2 animated fast fadeIn" style="padding-left: 0px;">
-    <app-search></app-search>
+<app-search></app-search>
 </div>
 <div class="container">
     <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Thumbnail Gallery</h1>
@@ -13,3 +18,4 @@
         </div>
     </div>
 </div>
+</ng-template>

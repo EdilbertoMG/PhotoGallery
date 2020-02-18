@@ -12,6 +12,7 @@ export class PhotosComponent implements OnInit {
 
   photos: Photo[] = [];
   loading: boolean;
+  veryfidata: boolean;
 
   constructor( private photogallery: PhotogalleryService, private router: Router ) {}
   
@@ -20,34 +21,12 @@ export class PhotosComponent implements OnInit {
     this.photogallery.getAllPhotos()
     .subscribe( (data: any) =>{
       this.photos = data.photos
+      if (this.photos.length == 0) {
+        this.veryfidata = true;
+      }else{
+        this.veryfidata = false;
+      }
     })
     this.loading = false;
   }
-
-  /*  deletePhoto(id: string) {
-    this.photogallery.deletePhoto(id)
-      .subscribe(
-      res => {
-        console.log(res);
-        location.reload();
-      },
-      err => {
-        console.log(err)
-      }
-      )
-  } */
-
-  /* addPhotoAlbum(id:HTMLInputElement,id_album:HTMLInputElement){
-    this.photogallery.addPhotoAlbum(id.value, id_album.value)
-    .subscribe(
-      res => {
-        console.log(res);
-        this.router.navigate(['photos'])
-      }, 
-      err => {
-        console.log(err)
-      }
-    )
-  } */
-
 }

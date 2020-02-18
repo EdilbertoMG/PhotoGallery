@@ -1,9 +1,19 @@
+<div *ngIf="veryfidata; else main_content" class="alert alert-danger" role="alert">
+  this photo does not exist
+</div>
+<ng-template #main_content>
+<app-loading *ngIf="loading; else main_content2"></app-loading>
+<ng-template #main_content2>
 <div class="row">
 <div class="col-12 col-sm-12 col-md-6">
     <div class="card mt-2">
         <div class="card-body">
           <h5 class="card-title">{{title}}</h5>
           <p class="card-text">{{description}}</p>
+          <div *ngIf="veryfidataalbums; else main_content3" class="alert alert-danger" role="alert">
+            add an album to be able to assign it to a photo
+          </div>
+          <ng-template #main_content3>
           <form (submit)="addPhotoToAlbum(id_photo,id_album)" class="mt-2">
             <div class="form-group">
               <label for="exampleFormControlSelect2">select an album</label>
@@ -13,11 +23,14 @@
             </div>
             <button type="submit" class="btn btn-primary btn-lg btn-block">Save photo to album</button>
           </form>
+        </ng-template>
           <button (click)="deletePhoto(id_photo)" type="button" class="btn btn-danger btn-lg btn-block mt-1">Delete photo</button>
       </div>
         </div>
 </div>
-<div class="col-12 col-sm-12 col-md-6">
+<div class="col-12 col-sm-12 col-md-6 mt-2">
     <img [src]="img" [alt]="title" class="img-thumbnail">
 </div>
 </div>
+</ng-template>
+</ng-template>

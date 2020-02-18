@@ -3,6 +3,10 @@ import { PhotogalleryService } from 'src/app/services/photogallery.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Photo } from '../../interfaces/Photo';
 
+interface HtmlInputEvent extends Event {
+  target: HTMLInputElement & EventTarget;
+}
+
 @Component({
   selector: 'app-albums',
   templateUrl: './albums.component.html',
@@ -12,6 +16,8 @@ export class AlbumsComponent implements OnInit {
 
   id_album: string;
   photos: Photo[];
+  file: File;
+  veryfidata:boolean;
 
   constructor(
     private photogallery: PhotogalleryService, 
@@ -27,6 +33,14 @@ export class AlbumsComponent implements OnInit {
           (data: any) => {
             console.log(data.photos);
             this.photos = data.photos;
+            if (this.photos.length == 0) {
+              this.veryfidata = true;
+            }else{
+              this.veryfidata = false;
+            }
+          },
+          (error) => {
+            
           }
         )
     });
@@ -37,7 +51,7 @@ export class AlbumsComponent implements OnInit {
       .subscribe(
       res => {
         console.log(res);
-        this.router.navigate(['photos'])
+        location.reload();
       },
       err => {
         console.log(err)
@@ -45,16 +59,50 @@ export class AlbumsComponent implements OnInit {
       )
   }
 
-  deleteAlbum(id_album:string){
+  deleteAlbum(id_album:string):boolean{
     this.photogallery.deleteAlbum(id_album)
     .subscribe(
       res => {
-        console.log(res);
-        this.router.navigate(['photos'])
+        console.log(res)
+        location.reload();
       },
       err => {
         console.log(err)
       }
       )
+      this.router.navigate(['photos/'])
+      return false;
+  }
+
+  onPhotoSelected(event: HtmlInputEvent): void {
+    if (event.target.files && event.target.files[0]) {
+      this.file = <File>event.target.files[0];
+    }
+  }
+
+  uploadPhoto(title:HTMLInputElement,description:HTMLTextAreaElement){
+    this.photogallery.createPhotoInAlbum(title.value, description.value, this.file, this.id_album)
+    .subscribe(
+      res => {
+        console.log(res)
+        location.reload();
+      }, 
+      err => {
+        console.log(err)
+      }
+    )
+  }
+
+  uploadAlbum(titleAlbum:HTMLInputElement,descriptionAlbum:HTMLTextAreaElement){
+    this.photogallery.createAlbum(titleAlbum.value, descriptionAlbum.value)
+    .subscribe(
+      res => {
+        console.log(res)
+        location.reload();
+      }, 
+      err => {
+        console.log(err)
+      }
+    )
   }
 }

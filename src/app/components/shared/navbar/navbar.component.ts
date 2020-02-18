@@ -9,14 +9,13 @@ export class NavbarComponent implements OnInit {
 
   albums: any[] = [];
 
-  constructor( private photogallery: PhotogalleryService ) { 
+  constructor( private photogallery: PhotogalleryService ) {}
+
+  ngOnInit(): void {
     this.photogallery.getAllAlbums()
     .subscribe( (data: any) =>{
       this.albums = data.album
     })
-  }
-
-  ngOnInit(): void {
   }
 
 }

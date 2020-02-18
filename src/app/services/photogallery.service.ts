@@ -40,6 +40,15 @@ export class PhotogalleryService {
       return this.http.post(`${this.URI}photos`, fd);
   }
 
+  createPhotoInAlbum(title: string, description: string, image: File, id_album: string) {
+    const fd = new FormData();
+    fd.append('title', title)
+    fd.append('description', description)
+    fd.append('image', image)
+    fd.append('id_album', id_album)
+    return this.http.post(`${this.URI}photosInAlbum`, fd);
+}
+
   getByName(finished: string) {
       return this.http.get < Photo > (`${this.URI}photos/search/${finished}`);
   }
