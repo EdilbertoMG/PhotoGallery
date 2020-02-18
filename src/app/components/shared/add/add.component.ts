@@ -9,10 +9,6 @@ import {
   Router
 } from '@angular/router'
 
-interface HtmlInputEvent extends Event {
-  target: HTMLInputElement & EventTarget;
-}
-
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html'
@@ -24,17 +20,15 @@ export class AddComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onPhotoSelected(event: HtmlInputEvent): void {
-      if (event.target.files && event.target.files[0]) {
-          this.file = < File > event.target.files[0];
-      }
+  onPhotoSelected(files: FileList){
+    this.file = files.item(0);
   }
 
   uploadPhoto(title: HTMLInputElement, description: HTMLTextAreaElement) {
       this.servicePhoto.createPhoto(title.value, description.value, this.file)
           .subscribe(
               res => {
-                  location.reload();
+                console.log(res)
               },
               err => {
                   console.log(err)

@@ -40,7 +40,6 @@ export class AlbumsComponent implements OnInit {
           this.photogallery.getPhotosInAlbums(this.id_album)
               .subscribe(
                   (data: any) => {
-                      console.log(data.photos);
                       this.photos = data.photos;
                       if (this.photos.length == 0) {
                           this.veryfidata = true;
@@ -81,17 +80,15 @@ export class AlbumsComponent implements OnInit {
       return false;
   }
 
-  onPhotoSelected(event: HtmlInputEvent): void {
-      if (event.target.files && event.target.files[0]) {
-          this.file = < File > event.target.files[0];
-      }
+  onPhotoSelected(files: FileList){
+    this.file = files.item(0);
   }
 
   uploadPhoto(title: HTMLInputElement, description: HTMLTextAreaElement) {
       this.photogallery.createPhotoInAlbum(title.value, description.value, this.file, this.id_album)
           .subscribe(
               res => {
-                  location.reload();
+                console.log(res)
               },
               err => {
                   console.log(err)

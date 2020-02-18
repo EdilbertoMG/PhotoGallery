@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, enableProdMode } from '@angular/core';
 
 // module
 import { RouterModule } from '@angular/router';
@@ -18,6 +18,8 @@ import { NophotoPipe } from './pipes/nophoto.pipe';
 import { routes } from './app-routing.module';
 import { SearchComponent } from './components/search/search.component';
 import { OnePhotoComponent } from './components/one-photo/one-photo.component';
+
+enableProdMode();
 
 @NgModule({
   declarations: [

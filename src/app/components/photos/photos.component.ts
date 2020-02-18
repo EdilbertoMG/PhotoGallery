@@ -31,6 +31,7 @@ export class PhotosComponent implements OnInit {
               this.photos = data.photos
               if (this.photos.length == 0) {
                   this.veryfidata = true;
+                  this.loading = true;
               } else {
                   this.veryfidata = false;
               }
