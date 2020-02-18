@@ -1,6 +1,5 @@
 import {
-  Component,
-  OnInit
+  Component
 } from '@angular/core';
 import {
   PhotogalleryService
@@ -14,37 +13,46 @@ import {
   templateUrl: './add.component.html'
 })
 
-export class AddComponent implements OnInit {
+export class AddComponent {
   file: File;
-  constructor(private servicePhoto: PhotogalleryService, private router: Router) {}
+  loading: boolean;
 
-  ngOnInit(): void {}
+  constructor(private servicePhoto: PhotogalleryService, private router: Router) {}
 
   onPhotoSelected(files: FileList){
     this.file = files.item(0);
   }
 
-  uploadPhoto(title: HTMLInputElement, description: HTMLTextAreaElement) {
+  uploadPhoto(title: HTMLInputElement, description: HTMLTextAreaElement):boolean {
+    this.loading = true;
       this.servicePhoto.createPhoto(title.value, description.value, this.file)
           .subscribe(
-              res => {
-                console.log(res)
+            res => {
+                alert("Saved Photo");
+                location.reload();
               },
               err => {
-                  console.log(err)
+                  alert("Couldn't save photo");
+                  console.log(err.error)
               }
           )
+          this.loading = false;
+          return false
   }
 
-  uploadAlbum(titleAlbum: HTMLInputElement, descriptionAlbum: HTMLTextAreaElement) {
+  uploadAlbum(titleAlbum: HTMLInputElement, descriptionAlbum: HTMLTextAreaElement):boolean {
+    
       this.servicePhoto.createAlbum(titleAlbum.value, descriptionAlbum.value)
           .subscribe(
               res => {
-                  location.reload();
+                alert("Saved Album");
+                location.reload();
               },
               err => {
-                  console.log(err)
+                alert("Couldn't save Album");
+                console.log(err.error)
               }
           )
+          return false
   }
 }

@@ -84,27 +84,33 @@ export class AlbumsComponent implements OnInit {
     this.file = files.item(0);
   }
 
-  uploadPhoto(title: HTMLInputElement, description: HTMLTextAreaElement) {
+  uploadPhoto(title: HTMLInputElement, description: HTMLTextAreaElement):boolean {
       this.photogallery.createPhotoInAlbum(title.value, description.value, this.file, this.id_album)
           .subscribe(
               res => {
-                console.log(res)
+                alert("Saved photo");
+                location.reload();
               },
               err => {
-                  console.log(err)
+                alert("Couldn't save photo");
+                console.log(err.error)
               }
           )
+          return false
   }
 
-  uploadAlbum(titleAlbum: HTMLInputElement, descriptionAlbum: HTMLTextAreaElement) {
+  uploadAlbum(titleAlbum: HTMLInputElement, descriptionAlbum: HTMLTextAreaElement):boolean {
       this.photogallery.createAlbum(titleAlbum.value, descriptionAlbum.value)
           .subscribe(
               res => {
-                  location.reload();
+                alert("Saved Album");
+                location.reload();
               },
               err => {
-                  console.log(err)
+                alert("Couldn't save Album");
+                console.log(err.error)
               }
           )
+          return false
   }
 }
