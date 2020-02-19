@@ -31,11 +31,11 @@ export class PhotosComponent implements OnInit {
               this.photos = data.photos
               if (this.photos.length == 0) {
                   this.veryfidata = true;
-                  this.loading = true;
+                  this.loading = false;
               } else {
                   this.veryfidata = false;
+                  this.loading = false;
               }
           })
-      this.loading = false;
   }
 }
