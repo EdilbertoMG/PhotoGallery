@@ -27,6 +27,7 @@ export class AlbumsComponent implements OnInit {
   photos: Photo[];
   file: File;
   veryfidata: boolean;
+  loading: boolean;
 
   constructor(
       private photogallery: PhotogalleryService,
@@ -88,25 +89,30 @@ export class AlbumsComponent implements OnInit {
       this.photogallery.createPhotoInAlbum(title.value, description.value, this.file, this.id_album)
           .subscribe(
               res => {
-                alert("Saved photo");
+                this.loading = false;
+                alert("Saved Photo");
                 location.reload();
               },
               err => {
-                alert("Couldn't save photo");
-                console.log(err.error)
+                this.loading = false;
+                  alert("Couldn't save photo");
+                  console.log(err.error)
               }
           )
           return false
   }
 
   uploadAlbum(titleAlbum: HTMLInputElement, descriptionAlbum: HTMLTextAreaElement):boolean {
+    this.loading = true;
       this.photogallery.createAlbum(titleAlbum.value, descriptionAlbum.value)
           .subscribe(
               res => {
+                this.loading = false;
                 alert("Saved Album");
                 location.reload();
               },
               err => {
+                this.loading = false;
                 alert("Couldn't save Album");
                 console.log(err.error)
               }

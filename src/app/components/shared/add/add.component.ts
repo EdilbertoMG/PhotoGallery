@@ -28,27 +28,30 @@ export class AddComponent {
       this.servicePhoto.createPhoto(title.value, description.value, this.file)
           .subscribe(
             res => {
+                this.loading = false;
                 alert("Saved Photo");
                 location.reload();
               },
               err => {
+                  this.loading = false;
                   alert("Couldn't save photo");
                   console.log(err.error)
               }
           )
-          this.loading = false;
           return false
   }
 
   uploadAlbum(titleAlbum: HTMLInputElement, descriptionAlbum: HTMLTextAreaElement):boolean {
-    
+    this.loading = true;
       this.servicePhoto.createAlbum(titleAlbum.value, descriptionAlbum.value)
           .subscribe(
               res => {
+                this.loading = false;
                 alert("Saved Album");
                 location.reload();
               },
               err => {
+                this.loading = false;
                 alert("Couldn't save Album");
                 console.log(err.error)
               }
